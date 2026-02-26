@@ -2,9 +2,12 @@ package br.com.fiap.api_rest.service;
 
 import br.com.fiap.api_rest.model.Produto;
 import br.com.fiap.api_rest.repository.ProdutoReppository;
+import jakarta.persistence.metamodel.SingularAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -36,4 +39,6 @@ public class ProdutoService {
         produtoReppository.deleteById(id);
     }
 
+    public Produto read(SingularAttribute<AbstractPersistable, Serializable> id) {
+    }
 }
