@@ -33,7 +33,7 @@ public class ProdutoController {
         return new ResponseEntity<>(produtoSalvo, HttpStatus.CREATED);
     }
 
-    @GetMapping("/id")
+    @GetMapping("{/id}")
     public ResponseEntity<Produto> readProduto(@PathVariable UUID id) {
         Produto produto = produtoService.read(id);
         if (produto == null){
@@ -52,7 +52,7 @@ public class ProdutoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Produto>> readProdutosById(@RequestBody Produto produto){
+    public ResponseEntity<List<Produto>> updateProdutos(@RequestBody Produto produto){
         Produto produtoExistente = produtoService.read(produto.getId());
         if (produtoExistente == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
