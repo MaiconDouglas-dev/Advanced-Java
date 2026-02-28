@@ -1,8 +1,10 @@
 package br.com.fiap.api_rest.service;
 
+import br.com.fiap.api_rest.dto.ProdutoRequest;
 import br.com.fiap.api_rest.model.Produto;
 import br.com.fiap.api_rest.repository.ProdutoReppository;
 import jakarta.persistence.metamodel.SingularAttribute;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.stereotype.Service;
@@ -18,7 +20,9 @@ public class ProdutoService {
     private ProdutoReppository produtoReppository;
 
     //CRUD
-    public Produto create(Produto produto) {
+    public Produto create(ProdutoRequest produtoRequest) {
+        Produto produto =new Produto();
+        BeanUtils.copyProperties(produtoRequest, produto);
         return produtoReppository.save(produto);
     }
 
@@ -39,6 +43,4 @@ public class ProdutoService {
         produtoReppository.deleteById(id);
     }
 
-    public Produto read(SingularAttribute<AbstractPersistable, Serializable> id) {
-    }
 }
